@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2016/02/24 14:14:53.128,=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/02/24 14:15:45.457,=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/02/24 14:16:43.640,=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/02/24 14:18:35.639,C:\Sistemas\SIS_Wifi-XE8\Service wifi\uService.pas=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/02/24 14:18:35.639,C:\Sistemas\SIS_Wifi-XE8\Service wifi\uService.dfm=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2016/02/24 14:19:09.748,C:\Sistemas\SIS_Wifi-XE8\Service wifi\uTservice.pas=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/02/24 14:19:52.589,C:\Sistemas\SIS_Wifi-XE8\Service wifi\wifi_service.dproj=C:\Users\DI\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

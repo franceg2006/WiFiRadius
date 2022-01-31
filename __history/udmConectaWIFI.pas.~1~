@@ -1,0 +1,145 @@
+unit udmConectaWIFI;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DBXMySQL, Data.FMTBcd,
+  Datasnap.DBClient, Data.DB, Data.SqlExpr, Datasnap.Provider, Data.Win.ADODB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.Comp.Client;
+
+type
+  TdmConectaWIFI = class(TDataModule)
+    SQLCnx: TSQLConnection;
+    prvGrupo: TDataSetProvider;
+    dtsGrupo: TSQLDataSet;
+    cdsGrupo: TClientDataSet;
+    dtsGrupousername: TStringField;
+    dtsGrupogroupname: TStringField;
+    dtsGrupopriority: TIntegerField;
+    cdsGrupousername: TStringField;
+    cdsGrupogroupname: TStringField;
+    cdsGrupopriority: TIntegerField;
+    prvUserSenha: TDataSetProvider;
+    dtsUserSenha: TSQLDataSet;
+    cdsUserSenha: TClientDataSet;
+    dtsUserSenhaid: TIntegerField;
+    dtsUserSenhausername: TStringField;
+    dtsUserSenhaattribute: TStringField;
+    dtsUserSenhaop: TStringField;
+    dtsUserSenhavalue: TStringField;
+    cdsUserSenhaid: TIntegerField;
+    cdsUserSenhausername: TStringField;
+    cdsUserSenhaattribute: TStringField;
+    cdsUserSenhaop: TStringField;
+    cdsUserSenhavalue: TStringField;
+    sqlID: TSQLQuery;
+    sqlIDmaxid: TIntegerField;
+    sqlRadcheck: TSQLQuery;
+    sqlRadusergroup: TSQLQuery;
+    prvFunc: TDataSetProvider;
+    dtsFunc: TSQLDataSet;
+    cdsFunc: TClientDataSet;
+    intgrfldFunccodigo: TIntegerField;
+    strngfldFuncnome: TStringField;
+    strngfldFunccpf: TStringField;
+    strngfldFuncsenha: TStringField;
+    strngfldFunctipo: TStringField;
+    strngfldFuncstatus: TStringField;
+    strngfldFuncrg: TStringField;
+    strngfldFuncendereco: TStringField;
+    intgrfldFunccodigo1: TIntegerField;
+    strngfldFuncnome1: TStringField;
+    strngfldFunccpf1: TStringField;
+    strngfldFuncsenha1: TStringField;
+    strngfldFunctipo1: TStringField;
+    strngfldFuncstatus1: TStringField;
+    strngfldFuncrg1: TStringField;
+    strngfldFuncendereco1: TStringField;
+    sqlData: TSQLQuery;
+    sqlDatacurdate: TDateField;
+    dtsFuncdata: TDateField;
+    cdsFuncdata: TDateField;
+    sqlCod_func: TSQLQuery;
+    intgrfldCod_funccodigo: TIntegerField;
+    function isCPF(CPF : string): Boolean;
+  private
+    { Private declarations }
+  public
+
+    { Public declarations }
+  end;
+
+var
+  dmConectaWIFI: TdmConectaWIFI;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+function TdmConectaWIFI.isCPF(CPF: string): boolean;
+var dig10, dig11: string; s, i, r, peso: integer;
+begin
+ // length - retorna o tamanho da string (CPF é um número formado por 11 dígitos)
+
+ if ((CPF = '00000000000') or (CPF = '11111111111') or (CPF = '22222222222')
+  or (CPF = '33333333333') or (CPF = '44444444444') or (CPF = '55555555555')
+  or (CPF = '66666666666') or (CPF = '77777777777') or (CPF = '88888888888')
+  or (CPF = '99999999999') or (length(CPF) <> 11)) then
+ begin
+  isCPF := false;
+  exit;
+ end;
+
+ // try - protege o código para eventuais erros de conversão de tipo na função StrToInt
+ try { *-- Cálculo do 1o. Digito Verificador --* }
+   s := 0;
+   peso := 10;
+
+   for i := 1 to 9 do
+   begin // StrToInt converte o i-ésimo caractere do CPF em um número
+    s := s + (StrToInt(CPF[i]) * peso); peso := peso - 1;
+   end;
+   r := 11 - (s mod 11);
+   if ((r = 10) or (r = 11)) then
+    dig10 := '0'
+   else
+    str(r:1, dig10); // converte um número no respectivo caractere numérico { *-- Cálculo do 2o. Digito Verificador --* }
+
+   s := 0;
+   peso := 11;
+
+   for i := 1 to 10 do
+   begin
+    s := s + (StrToInt(CPF[i]) * peso);
+    peso := peso - 1;
+
+   end;
+   r := 11 - (s mod 11);
+
+   if ((r = 10) or (r = 11)) then
+    dig11 := '0'
+   else
+
+   str(r:1, dig11); { Verifica se os digitos calculados conferem com os digitos informados. }
+
+   if ((dig10 = CPF[10]) and (dig11 = CPF[11])) then
+    isCPF := true
+   else
+    isCPF := false;
+
+  except
+    isCPF := false
+ end;
+end;
+
+
+
+
+
+
+
+end.

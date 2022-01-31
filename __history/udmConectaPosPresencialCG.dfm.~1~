@@ -1,0 +1,85 @@
+object dmConectaPosPresencialCG: TdmConectaPosPresencialCG
+  OldCreateOrder = False
+  Height = 427
+  Width = 630
+  object SQLCnx: TSQLConnection
+    ConnectionName = 'dmAcademico'
+    DriverName = 'Firebird'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXFirebird'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver160.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=16.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
+        'birdDriver160.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
+        'actory,Borland.Data.DbxFirebirdDriver,Version=16.0.0.0,Culture=n' +
+        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverINTERBASE'
+      'LibraryName=dbxfb.dll'
+      'LibraryNameOsx=libsqlfb.dylib'
+      'VendorLib=fbclient.dll'
+      'VendorLibWin64=fbclient.dll'
+      'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
+      
+        'Database=192.168.6.250:/bancos/pos_presencial/pospresencial_cg.f' +
+        'db'
+      'User_Name=USER_POS'
+      'Password=mjw91_12'
+      'Role=RoleName'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'IsolationLevel=ReadCommitted'
+      'SQLDialect=3'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'TrimChar=False'
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'RoleName=RoleName'
+      'ServerCharSet='
+      'Trim Char=False')
+    Left = 21
+    Top = 22
+  end
+  object prvAlunos: TDataSetProvider
+    DataSet = dtsAlunos
+    Left = 79
+    Top = 68
+  end
+  object dtsAlunos: TSQLDataSet
+    CommandText = 
+      'select distinct matricula.rgm, aluno.senha'#13#10'from matricula'#13#10'join' +
+      ' aluno on (aluno.codigo = matricula.aluno)'#13#10'where matricula.stat' +
+      'us = '#39'A'#39' and (matricula.ano = extract(year from current_date) or' +
+      ' matricula.ano = (extract(year from current_date)-1))'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 79
+    Top = 22
+  end
+  object cdsAlunos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvAlunos'
+    Left = 79
+    Top = 118
+    object cdsAlunosRGM: TStringField
+      FieldName = 'RGM'
+      Required = True
+      Size = 10
+    end
+    object cdsAlunosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 6
+    end
+  end
+end

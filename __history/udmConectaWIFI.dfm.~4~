@@ -1,0 +1,319 @@
+object dmConectaWIFI: TdmConectaWIFI
+  OldCreateOrder = False
+  Height = 509
+  Width = 1025
+  object SQLCnx: TSQLConnection
+    ConnectionName = 'dmAcademico'
+    DriverName = 'MySQL'
+    KeepConnection = False
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXMySQL'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver210.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=21.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver210.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=21.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=LIBMYSQL.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'HostName=192.168.0.250'
+      'Database=radius'
+      'User_Name=root'
+      'Password=lizard1240king'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'BlobSize=-1'
+      'ErrorResourceFile=')
+    Left = 13
+    Top = 18
+  end
+  object prvGrupo: TDataSetProvider
+    DataSet = dtsGrupo
+    Left = 71
+    Top = 60
+  end
+  object dtsGrupo: TSQLDataSet
+    CommandText = 'select*'#13#10'from radusergroup'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 71
+    Top = 14
+    object dtsGrupousername: TStringField
+      FieldName = 'username'
+      Required = True
+      Size = 64
+    end
+    object dtsGrupogroupname: TStringField
+      FieldName = 'groupname'
+      Required = True
+      Size = 64
+    end
+    object dtsGrupopriority: TIntegerField
+      FieldName = 'priority'
+      Required = True
+    end
+  end
+  object cdsGrupo: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvGrupo'
+    Left = 71
+    Top = 110
+    object cdsGrupousername: TStringField
+      FieldName = 'username'
+      Required = True
+      Size = 64
+    end
+    object cdsGrupogroupname: TStringField
+      FieldName = 'groupname'
+      Required = True
+      Size = 64
+    end
+    object cdsGrupopriority: TIntegerField
+      FieldName = 'priority'
+      Required = True
+    end
+  end
+  object prvUserSenha: TDataSetProvider
+    DataSet = dtsUserSenha
+    Left = 143
+    Top = 60
+  end
+  object dtsUserSenha: TSQLDataSet
+    CommandText = 'select radcheck.*'#13#10'from radcheck'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 143
+    Top = 14
+    object dtsUserSenhaid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object dtsUserSenhausername: TStringField
+      FieldName = 'username'
+      Size = 64
+    end
+    object dtsUserSenhaattribute: TStringField
+      FieldName = 'attribute'
+      Size = 64
+    end
+    object dtsUserSenhaop: TStringField
+      FieldName = 'op'
+      FixedChar = True
+      Size = 2
+    end
+    object dtsUserSenhavalue: TStringField
+      FieldName = 'value'
+      Size = 253
+    end
+  end
+  object cdsUserSenha: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvUserSenha'
+    Left = 143
+    Top = 110
+    object cdsUserSenhaid: TIntegerField
+      FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsUserSenhausername: TStringField
+      FieldName = 'username'
+      Size = 64
+    end
+    object cdsUserSenhaattribute: TStringField
+      FieldName = 'attribute'
+      Size = 64
+    end
+    object cdsUserSenhaop: TStringField
+      FieldName = 'op'
+      FixedChar = True
+      Size = 2
+    end
+    object cdsUserSenhavalue: TStringField
+      FieldName = 'value'
+      Size = 253
+    end
+  end
+  object sqlID: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'SELECT max(id)'
+      'FROM radcheck')
+    SQLConnection = SQLCnx
+    Left = 576
+    Top = 144
+    object sqlIDmaxid: TIntegerField
+      FieldName = 'max(id)'
+    end
+  end
+  object sqlRadcheck: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'DELETE FROM radcheck')
+    SQLConnection = SQLCnx
+    Left = 496
+    Top = 136
+  end
+  object sqlRadusergroup: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'DELETE FROM radusergroup')
+    SQLConnection = SQLCnx
+    Left = 400
+    Top = 136
+  end
+  object prvFunc: TDataSetProvider
+    DataSet = dtsFunc
+    UpdateMode = upWhereKeyOnly
+    Left = 215
+    Top = 59
+  end
+  object dtsFunc: TSQLDataSet
+    CommandText = 'SELECT * '#13#10'FROM  funcionario'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 215
+    Top = 13
+    object intgrfldFunccodigo: TIntegerField
+      FieldName = 'codigo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object strngfldFuncnome: TStringField
+      FieldName = 'nome'
+      Required = True
+      Size = 80
+    end
+    object strngfldFunccpf: TStringField
+      FieldName = 'cpf'
+      Required = True
+      Size = 14
+    end
+    object strngfldFuncsenha: TStringField
+      FieldName = 'senha'
+      Required = True
+      Size = 6
+    end
+    object strngfldFunctipo: TStringField
+      FieldName = 'tipo'
+      Required = True
+      Size = 1
+    end
+    object strngfldFuncstatus: TStringField
+      FieldName = 'status'
+      Required = True
+      Size = 1
+    end
+    object strngfldFuncrg: TStringField
+      FieldName = 'rg'
+      Required = True
+      Size = 14
+    end
+    object strngfldFuncendereco: TStringField
+      FieldName = 'endereco'
+      Required = True
+      Size = 200
+    end
+    object dtsFuncdata: TDateField
+      FieldName = 'data'
+      Required = True
+    end
+  end
+  object cdsFunc: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvFunc'
+    Left = 215
+    Top = 109
+    object intgrfldFunccodigo1: TIntegerField
+      FieldName = 'codigo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object strngfldFuncnome1: TStringField
+      FieldName = 'nome'
+      Required = True
+      Size = 80
+    end
+    object strngfldFunccpf1: TStringField
+      FieldName = 'cpf'
+      Required = True
+      Size = 14
+    end
+    object strngfldFuncsenha1: TStringField
+      FieldName = 'senha'
+      Required = True
+      Size = 6
+    end
+    object strngfldFunctipo1: TStringField
+      FieldName = 'tipo'
+      Required = True
+      Size = 1
+    end
+    object strngfldFuncstatus1: TStringField
+      FieldName = 'status'
+      Required = True
+      Size = 1
+    end
+    object strngfldFuncrg1: TStringField
+      FieldName = 'rg'
+      Required = True
+      Size = 14
+    end
+    object strngfldFuncendereco1: TStringField
+      FieldName = 'endereco'
+      Required = True
+      Size = 200
+    end
+    object cdsFuncdata: TDateField
+      FieldName = 'data'
+      Required = True
+    end
+  end
+  object sqlData: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'SELECT curdate()')
+    SQLConnection = SQLCnx
+    Left = 400
+    Top = 216
+    object sqlDatacurdate: TDateField
+      FieldName = 'curdate()'
+      Required = True
+    end
+  end
+  object sqlCod_func: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select max(codigo) as codigo'
+      'from funcionario')
+    SQLConnection = SQLCnx
+    Left = 496
+    Top = 216
+    object intgrfldCod_funccodigo: TIntegerField
+      FieldName = 'codigo'
+    end
+  end
+end

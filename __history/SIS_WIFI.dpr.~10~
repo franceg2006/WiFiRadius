@@ -1,0 +1,29 @@
+program SIS_WIFI;
+
+uses
+  Vcl.Forms,
+  ufrmPrincipal in 'ufrmPrincipal.pas' {frmPrincipal},
+  udmConectaPos in 'udmConectaPos.pas' {dmConectaPos: TDataModule},
+  udmConectaGradPresencial in 'udmConectaGradPresencial.pas' {dmConectaGradPresencial: TDataModule},
+  udmConectaGradEAD in 'udmConectaGradEAD.pas' {dmConectaGradEAD: TDataModule},
+  udmConectaPosPresencial in 'udmConectaPosPresencial.pas' {dmConectaPosPresencial: TDataModule},
+  udmConectaGradPresencialCG in 'udmConectaGradPresencialCG.pas' {dmConectaGradPresencialCG: TDataModule},
+  udmConectaWIFI in 'udmConectaWIFI.pas' {dmConectaWIFI: TDataModule},
+  udmConectaPosPresencialCG in 'udmConectaPosPresencialCG.pas' {dmConectaPosPresencialCG: TDataModule},
+  udmConectaFunc in 'udmConectaFunc.pas' {dmConectaFunc: TDataModule},
+  ufrmMenu in 'ufrmMenu.pas' {frmMenu},
+  ufrmCadFuncionario in 'ufrmCadFuncionario.pas' {frmCadFuncionario},
+  udmConectaAngulo in 'udmConectaAngulo.pas' {dmConectaAngulo: TDataModule},
+  UDM_WiFi in 'UDM_WiFi.pas' {DM_WiFi: TDataModule},
+  UDM in 'UDM.pas' {DM: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMenu, frmMenu);
+  Application.CreateForm(TDM_WiFi, DM_WiFi);
+  Application.CreateForm(TDM, DM);
+  Application.Run;
+end.

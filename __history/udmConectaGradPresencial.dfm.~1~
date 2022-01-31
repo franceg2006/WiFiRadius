@@ -1,0 +1,95 @@
+object dmConectaGradPresencial: TdmConectaGradPresencial
+  OldCreateOrder = False
+  Height = 287
+  Width = 364
+  object SQLCnx: TSQLConnection
+    ConnectionName = 'dmAcademico'
+    DriverName = 'Firebird'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXFirebird'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver160.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=16.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
+        'birdDriver160.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
+        'actory,Borland.Data.DbxFirebirdDriver,Version=16.0.0.0,Culture=n' +
+        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverINTERBASE'
+      'LibraryName=dbxfb.dll'
+      'LibraryNameOsx=libsqlfb.dylib'
+      'VendorLib=fbclient.dll'
+      'VendorLibWin64=fbclient.dll'
+      'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
+      'Database=172.16.0.77:/bancos/presencial/academico_db.fdb'
+      'User_Name=USER_WIFI'
+      'Password=shd3821'
+      'Role=RoleName'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'IsolationLevel=ReadCommitted'
+      'SQLDialect=3'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'TrimChar=False'
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'RoleName=RoleName'
+      'ServerCharSet='
+      'Trim Char=False')
+    Left = 21
+    Top = 26
+  end
+  object prvAlunos: TDataSetProvider
+    DataSet = dtsAlunos
+    Left = 79
+    Top = 68
+  end
+  object dtsAlunos: TSQLDataSet
+    CommandText = 
+      'SELECT DISTINCT RGM.RGM, ALN.SENHA'#13#10'FROM ALUNOS ALN'#13#10'JOIN CONTRA' +
+      'TO CNT ON (CNT.ALN_ID = ALN.ALN_ID)'#13#10'JOIN MATRICULAS MTR ON (MTR' +
+      '.CNT_ID = CNT.CNT_ID)'#13#10'JOIN TES_CURSO_DET CRD ON (CRD.CRD_ID = M' +
+      'TR.CRD_ID AND CRD.PERIODO <> '#39'S'#39')'#13#10'JOIN CURSOS CRS ON (CRS.CRS_I' +
+      'D = CNT.CRS_ID AND CRS.CRT_ID = 1)'#13#10'JOIN RGMS RGM ON (RGM.CNT_ID' +
+      ' = CNT.CNT_ID AND RGM.CRD_ID = MTR.CRD_ID)'#13#10'JOIN SEC_CONFIG CFG ' +
+      'ON 1=1'#13#10'WHERE MTR.ANO = CFG.ANO_ATUAL AND MTR.SIT_ID = 1'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 79
+    Top = 22
+    object dtsAlunosRGM: TStringField
+      FieldName = 'RGM'
+      Required = True
+      Size = 10
+    end
+    object dtsAlunosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 6
+    end
+  end
+  object cdsAlunos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvAlunos'
+    Left = 79
+    Top = 118
+    object cdsAlunosRGM: TStringField
+      FieldName = 'RGM'
+      Required = True
+      Size = 10
+    end
+    object cdsAlunosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 6
+    end
+  end
+end

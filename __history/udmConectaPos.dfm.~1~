@@ -1,0 +1,95 @@
+object dmConectaPos: TdmConectaPos
+  OldCreateOrder = False
+  Height = 430
+  Width = 863
+  object SQLCnx: TSQLConnection
+    ConnectionName = 'dmAcademico'
+    DriverName = 'Firebird'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXFirebird'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver160.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=16.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
+        'birdDriver160.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
+        'actory,Borland.Data.DbxFirebirdDriver,Version=16.0.0.0,Culture=n' +
+        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverINTERBASE'
+      'LibraryName=dbxfb.dll'
+      'LibraryNameOsx=libsqlfb.dylib'
+      'VendorLib=fbclient.dll'
+      'VendorLibWin64=fbclient.dll'
+      'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
+      'Database=172.16.0.83:/bds/posead/posdistancia.fdb'
+      'User_Name=WIFI_USER'
+      'Password=djah28$21'
+      'Role=RoleName'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'IsolationLevel=ReadCommitted'
+      'SQLDialect=3'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'TrimChar=False'
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'RoleName=RoleName'
+      'ServerCharSet='
+      'Trim Char=False')
+    Connected = True
+    Left = 21
+    Top = 26
+  end
+  object prvAlunos: TDataSetProvider
+    DataSet = dtsAlunos
+    Left = 79
+    Top = 68
+  end
+  object dtsAlunos: TSQLDataSet
+    CommandText = 
+      'select    distinct c.rgm  , aluno.senha'#13#10'from'#13#10' matricula'#13#10'join'#13 +
+      #10' contrato c on (matricula.contrato = c.id)'#13#10'join'#13#10' aluno on (al' +
+      'uno.id = c.aluno)'#13#10'join'#13#10' turma on (matricula.turma = turma.id)'#13 +
+      #10'where    matricula.status = '#39'A'#39#13#10'and'#13#10' (turma.ano = extract(yea' +
+      'r from current_date)'#13#10'or'#13#10' turma.ano = (extract(year from curren' +
+      't_date)-1))'#13#10'and'#13#10' c.curso <> '#39'600'#39
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLCnx
+    Left = 79
+    Top = 22
+    object dtsAlunosRGM: TStringField
+      FieldName = 'RGM'
+      Required = True
+      Size = 10
+    end
+    object dtsAlunosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 15
+    end
+  end
+  object cdsAlunos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'prvAlunos'
+    Left = 79
+    Top = 118
+    object cdsAlunosRGM: TStringField
+      FieldName = 'RGM'
+      Required = True
+      Size = 10
+    end
+    object cdsAlunosSENHA: TStringField
+      FieldName = 'SENHA'
+      Size = 15
+    end
+  end
+end

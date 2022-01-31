@@ -1,0 +1,6 @@
+object wifi_service: Twifi_service
+  OldCreateOrder = False
+  DisplayName = 'wifi_service'
+  Height = 485
+  Width = 454
+end
