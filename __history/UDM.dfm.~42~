@@ -126,41 +126,6 @@ object DM: TDM
     Left = 192
     Top = 147
   end
-  object Ds_GradPresCG: TDataSource
-    DataSet = FDQ_GradPresCG
-    Left = 279
-    Top = 148
-  end
-  object FDC_GradPresCG: TFDConnection
-    Params.Strings = (
-      'User_Name=USER_WIFI'
-      'Password=shd3821'
-      'Database=/bancos/presencial/plenus_cg.fdb'
-      'Protocol=TCPIP'
-      'Server=192.168.6.250'
-      'DriverID=FB')
-    Connected = True
-    LoginPrompt = False
-    Left = 287
-    Top = 34
-  end
-  object FDQ_GradPresCG: TFDQuery
-    Connection = FDC_GradPresCG
-    SQL.Strings = (
-      'SELECT DISTINCT RGM.RGM, ALN.SENHA'
-      'FROM ALUNOS ALN'
-      'JOIN CONTRATO CNT ON (CNT.ALN_ID = ALN.ALN_ID)'
-      'JOIN MATRICULAS MTR ON (MTR.CNT_ID = CNT.CNT_ID)'
-      
-        'JOIN RGMS RGM ON (RGM.CNT_ID = CNT.CNT_ID AND RGM.CRD_ID = MTR.C' +
-        'RD_ID)'
-      'JOIN SEC_CONFIG CFG ON 1=1'
-      
-        'WHERE MTR.ANO = CFG.ANO_ATUAL AND MTR.SIT_ID = 1 AND MTR.CRD_ID ' +
-        '< 700')
-    Left = 279
-    Top = 88
-  end
   object FDC_PosEAD: TFDConnection
     Params.Strings = (
       'Database=/bds/posead/posdistancia.fdb'
@@ -301,6 +266,40 @@ object DM: TDM
   object Ds_PosPresCG: TDataSource
     DataSet = FDQ_PosPresCG
     Left = 552
+    Top = 152
+  end
+  object FDC_GradPresCG: TFDConnection
+    Params.Strings = (
+      'Database=/bancos/presencial/plenus_cg.fdb'
+      'User_Name=USER_WIFI'
+      'Password=shd3821'
+      'Server=192.168.6.250'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 288
+    Top = 32
+  end
+  object FDQ_GradPresCG: TFDQuery
+    Connection = FDC_GradPresCG
+    SQL.Strings = (
+      'SELECT DISTINCT RGM.RGM, ALN.SENHA'
+      'FROM ALUNOS ALN'
+      'JOIN CONTRATO CNT ON (CNT.ALN_ID = ALN.ALN_ID)'
+      'JOIN MATRICULAS MTR ON (MTR.CNT_ID = CNT.CNT_ID)'
+      
+        'JOIN RGMS RGM ON (RGM.CNT_ID = CNT.CNT_ID AND RGM.CRD_ID = MTR.C' +
+        'RD_ID)'
+      'JOIN SEC_CONFIG CFG ON 1=1'
+      
+        'WHERE MTR.ANO = CFG.ANO_ATUAL AND MTR.SIT_ID = 1 AND MTR.CRD_ID ' +
+        '< 700')
+    Left = 280
+    Top = 88
+  end
+  object Ds_GradPresCG: TDataSource
+    DataSet = FDQ_GradPresCG
+    Left = 280
     Top = 152
   end
 end

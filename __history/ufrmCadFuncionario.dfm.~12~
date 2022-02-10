@@ -135,11 +135,15 @@ object frmCadFuncionario: TfrmCadFuncionario
     Top = 49
     Width = 1092
     Height = 518
-    ActivePage = tstBusca
+    ActivePage = tstCadastro
     Align = alClient
     TabOrder = 1
     object tstBusca: TTabSheet
       Caption = 'Busca'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnl6: TPanel
         Left = 0
         Top = 0
@@ -223,6 +227,10 @@ object frmCadFuncionario: TfrmCadFuncionario
     object tstCadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lbl1: TLabel
         Left = 8
         Top = 8
@@ -285,7 +293,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Width = 73
         Height = 21
         DataField = 'codigo'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         Enabled = False
         TabOrder = 1
       end
@@ -296,7 +304,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 21
         CharCase = ecUpperCase
         DataField = 'nome'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         TabOrder = 3
       end
       object dbedtcpf: TDBEdit
@@ -306,9 +314,8 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 21
         CharCase = ecUpperCase
         DataField = 'cpf'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         TabOrder = 4
-        OnExit = dbedtcpfExit
       end
       object dbedtsenha: TDBEdit
         Left = 8
@@ -317,7 +324,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 24
         CharCase = ecLowerCase
         DataField = 'senha'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -333,17 +340,17 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 21
         CharCase = ecUpperCase
         DataField = 'rg'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         TabOrder = 6
       end
       object dbedtendereco: TDBEdit
         Left = 8
-        Top = 144
+        Top = 147
         Width = 521
         Height = 21
         CharCase = ecUpperCase
         DataField = 'endereco'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         TabOrder = 7
       end
       object dbedtdatahora: TDBEdit
@@ -353,7 +360,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 21
         TabStop = False
         DataField = 'data'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         Enabled = False
         TabOrder = 2
       end
@@ -364,7 +371,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 82
         Caption = 'Tipo'
         DataField = 'tipo'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         Items.Strings = (
           'Professor'
           'Funcion'#225'rio'
@@ -382,7 +389,7 @@ object frmCadFuncionario: TfrmCadFuncionario
         Height = 62
         Caption = 'Status'
         DataField = 'status'
-        DataSource = dsFuncionario
+        DataSource = DM_WiFi.DsFunc
         Items.Strings = (
           'Ativo'
           'Bloqueado (SEM ACESSO)')
@@ -4114,20 +4121,18 @@ object frmCadFuncionario: TfrmCadFuncionario
     Left = 440
     Top = 296
   end
-  object sqlRadcheck: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
+  object sqlRadcheck: TFDQuery
+    Connection = DM_WiFi.FD_Connect_WiFi
     SQL.Strings = (
       'DELETE FROM `radcheck` ')
-    Left = 624
-    Top = 280
+    Left = 644
+    Top = 281
   end
-  object sqlRadusergroup: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
+  object sqlRadusergroup: TFDQuery
+    Connection = DM_WiFi.FD_Connect_WiFi
     SQL.Strings = (
       'DELETE FROM radusergroup')
-    Left = 784
-    Top = 304
+    Left = 748
+    Top = 289
   end
 end

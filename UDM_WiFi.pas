@@ -43,6 +43,7 @@ type
     sqlData: TFDQuery;
     FD_Connect_WiFi: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    FD_conecta_WiFiII: TFDConnection;
     procedure FD_Connect_WiFiBeforeConnect(Sender: TObject);
   private
     { Private declarations }

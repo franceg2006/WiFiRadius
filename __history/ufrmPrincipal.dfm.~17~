@@ -1,6 +1,6 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 0
-  Top = 0
+  Left = 360
+  Top = 225
   Caption = 'SIS-Wifi Acesso'
   ClientHeight = 493
   ClientWidth = 894
@@ -11,9 +11,8 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poDesigned
   OnCreate = FormCreate
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -38,8 +37,8 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 0
   end
   object btn1: TButton
-    Left = 280
-    Top = 31
+    Left = 424
+    Top = 124
     Width = 225
     Height = 73
     Cursor = crHandPoint
@@ -58,7 +57,7 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 2
   end
   object dsFuncionario: TDataSource
-    Left = 760
+    Left = 712
     Top = 344
   end
   object il1: TImageList
@@ -1276,23 +1275,11 @@ object frmPrincipal: TfrmPrincipal
     Top = 344
   end
   object dsPosPresencial: TDataSource
-    Left = 352
-    Top = 416
+    Left = 400
+    Top = 408
   end
   object dsPosPresencialCG: TDataSource
-    Left = 256
-    Top = 344
-  end
-  object dsUserSenha: TDataSource
-    Left = 480
-    Top = 344
-  end
-  object dsGrupo: TDataSource
-    Left = 240
-    Top = 416
-  end
-  object dsFuncProf: TDataSource
-    Left = 648
+    Left = 280
     Top = 344
   end
   object dsGradEAD: TDataSource

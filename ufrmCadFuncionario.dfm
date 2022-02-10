@@ -1,6 +1,6 @@
 object frmCadFuncionario: TfrmCadFuncionario
-  Left = 0
-  Top = 0
+  Left = 257
+  Top = 169
   Caption = 'Cadastro -> Funcion'#225'rio / Professor / Visitante'
   ClientHeight = 567
   ClientWidth = 1092
@@ -11,7 +11,7 @@ object frmCadFuncionario: TfrmCadFuncionario
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poDesigned
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -227,10 +227,6 @@ object frmCadFuncionario: TfrmCadFuncionario
     object tstCadastro: TTabSheet
       Caption = 'Cadastro'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lbl1: TLabel
         Left = 8
         Top = 8

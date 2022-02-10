@@ -12,22 +12,38 @@ uses
 
 type
   TDM_WiFi = class(TDataModule)
-    FD_Connect_WiFi: TFDConnection;
     dsGrupo: TDataSource;
     FDQGrupo: TFDQuery;
     FDQGrupousername: TStringField;
     FDQGrupogroupname: TStringField;
     FDQGrupopriority: TIntegerField;
-    FDQUser_Senha: TFDQuery;
     dsUserSenha: TDataSource;
     DsFunc: TDataSource;
     FDQFunc: TFDQuery;
     sqlRadusergroup: TFDCommand;
     sqlRadcheck: TFDCommand;
-    sqlData: TFDCommand;
-    sqlCod_func: TFDCommand;
     sqlID: TFDQuery;
     sqlIDmaxid: TLongWordField;
+    FDQUser_Senha: TFDQuery;
+    FDQUser_Senhaid: TFDAutoIncField;
+    FDQUser_Senhausername: TStringField;
+    FDQUser_Senhaattribute: TStringField;
+    FDQUser_Senhaop: TStringField;
+    FDQUser_Senhavalue: TStringField;
+    FDQFunccodigo: TIntegerField;
+    FDQFuncnome: TStringField;
+    FDQFunccpf: TStringField;
+    FDQFuncsenha: TStringField;
+    FDQFunctipo: TStringField;
+    FDQFuncstatus: TStringField;
+    FDQFuncrg: TStringField;
+    FDQFuncendereco: TStringField;
+    FDQFuncdata: TDateField;
+    sqlCod_func: TFDQuery;
+    sqlData: TFDQuery;
+    FD_Connect_WiFi: TFDConnection;
+    FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    procedure FD_Connect_WiFiBeforeConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,5 +58,14 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TDM_WiFi.FD_Connect_WiFiBeforeConnect(Sender: TObject);
+begin
+// antes de conectar
+{  FDPhysMySQLDriverLink1.VendorLib :=
+  ExtractFilePath(Application.ExeName)+ 'libmysql.dll';}
+
+// ShowMessage(FDPhysMySQLDriverLink1.VendorLib);
+end;
 
 end.

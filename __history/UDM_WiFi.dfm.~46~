@@ -8,7 +8,9 @@ object DM_WiFi: TDM_WiFi
     Top = 104
   end
   object FDQGrupo: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
+    FormatOptions.AssignedValues = [fvDefaultParamDataType]
+    FormatOptions.DefaultParamDataType = ftString
     UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate]
     SQL.Strings = (
       'select*'
@@ -44,7 +46,7 @@ object DM_WiFi: TDM_WiFi
     Top = 104
   end
   object FDQFunc: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate]
     SQL.Strings = (
       'select *'
@@ -106,21 +108,21 @@ object DM_WiFi: TDM_WiFi
     end
   end
   object sqlRadusergroup: TFDCommand
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     CommandText.Strings = (
       'DELETE FROM radusergroup')
     Left = 416
     Top = 40
   end
   object sqlRadcheck: TFDCommand
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     CommandText.Strings = (
       'DELETE FROM radcheck')
     Left = 496
     Top = 40
   end
   object sqlID: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     SQL.Strings = (
       'SELECT max(id)'
       'FROM radcheck')
@@ -135,7 +137,9 @@ object DM_WiFi: TDM_WiFi
     end
   end
   object FDQUser_Senha: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
+    FormatOptions.AssignedValues = [fvDefaultParamDataType]
+    FormatOptions.DefaultParamDataType = ftString
     UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate]
     SQL.Strings = (
       'select *'
@@ -179,7 +183,7 @@ object DM_WiFi: TDM_WiFi
     end
   end
   object sqlCod_func: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     SQL.Strings = (
       'select max(codigo) as codigo'
       'from funcionario')
@@ -187,7 +191,7 @@ object DM_WiFi: TDM_WiFi
     Top = 40
   end
   object sqlData: TFDQuery
-    Connection = FD_Connect_WiFi
+    Connection = FD_conecta_WiFiII
     SQL.Strings = (
       'SELECT curdate() AS DATA')
     Left = 720
@@ -203,12 +207,24 @@ object DM_WiFi: TDM_WiFi
     Connected = True
     LoginPrompt = False
     BeforeConnect = FD_Connect_WiFiBeforeConnect
-    Left = 48
-    Top = 38
+    Left = 40
+    Top = 30
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     VendorLib = 'C:\Sistemas\SIS_Wifi-XE8\libmysql.dll'
-    Left = 136
-    Top = 176
+    Left = 88
+    Top = 256
+  end
+  object FD_conecta_WiFiII: TFDConnection
+    Params.Strings = (
+      'Database=radius'
+      'User_Name=root'
+      'Password=lizard1230king'
+      'Server=192.168.0.249'
+      'DriverID=MySQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 48
+    Top = 152
   end
 end

@@ -37,7 +37,7 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 0
   end
   object btn1: TButton
-    Left = 280
+    Left = 320
     Top = 31
     Width = 225
     Height = 73

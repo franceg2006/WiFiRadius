@@ -8,7 +8,6 @@ object DM_WiFi: TDM_WiFi
     Top = 104
   end
   object FDQGrupo: TFDQuery
-    Active = True
     Connection = FD_Connect_WiFi
     FormatOptions.AssignedValues = [fvDefaultParamDataType]
     FormatOptions.DefaultParamDataType = ftString
@@ -47,7 +46,6 @@ object DM_WiFi: TDM_WiFi
     Top = 104
   end
   object FDQFunc: TFDQuery
-    Active = True
     Connection = FD_Connect_WiFi
     UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate]
     SQL.Strings = (
@@ -139,7 +137,6 @@ object DM_WiFi: TDM_WiFi
     end
   end
   object FDQUser_Senha: TFDQuery
-    Active = True
     Connection = FD_Connect_WiFi
     FormatOptions.AssignedValues = [fvDefaultParamDataType]
     FormatOptions.DefaultParamDataType = ftString
@@ -207,15 +204,25 @@ object DM_WiFi: TDM_WiFi
       'Password=lizard1240king'
       'Server=192.168.0.250'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     BeforeConnect = FD_Connect_WiFiBeforeConnect
-    Left = 48
-    Top = 38
+    Left = 40
+    Top = 30
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     VendorLib = 'C:\Sistemas\SIS_Wifi-XE8\libmysql.dll'
-    Left = 88
-    Top = 256
+    Left = 72
+    Top = 224
+  end
+  object FD_conecta_WiFiII: TFDConnection
+    Params.Strings = (
+      'Database=radius'
+      'User_Name=root'
+      'Password=lizard1230king'
+      'Server=192.168.0.249'
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 40
+    Top = 105
   end
 end
